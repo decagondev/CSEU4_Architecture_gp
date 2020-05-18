@@ -8,6 +8,7 @@
 # print(num)                     # 123
 # print("%d" % num)              # 123
 # print("{:d}".format(num))      # 123
+# print(f"{num:d}")              # 123
 
 # # Printing a value as hex
 
@@ -48,6 +49,54 @@
 
 string1 = "10101010"
 
+1 * 128
+0 * 64
+1 * 32
+0 * 16
+1 * 8
+0 * 4
+1 * 2
+0 * 1
+
+reverse_string1 = "01010101"
+
+
+loop from 0 -> size of list - 1
+
+index = 0 -> 7
+base = 2
+index ** base
+0 ** 2 => 1
+1 ** 2 => 2
+2 ** 2 => 4
+3 ** 2 => 8
+4 ** 2 => 16
+5 ** 2 => 32
+6 ** 2 => 64
+7 ** 2 => 128
+multiplyer = 1 -> 128
+0 * multiplyer
+0 * 1 = 0
+1 * 2 = 2
+0 * 4 = 0
+1 * 8 = 8
+0 * 16 = 0
+1 * 32 = 32
+0 * 64 = 0
+1 * 128 = 128
+
+value = 0
+value += 0
+value += 2
+value += 0
+value += 8
+value += 0
+value += 32
+value += 0
+value += 128
+
+ret value => 170
+
 # [1, 0, 1, 0, 1, 0, 1, 0]
 # [0, 1, 0, 1, 0, 1, 0, 1]
 
@@ -59,6 +108,31 @@ string1 = "10101010"
 # 128 + 32 + 8 + 2
 
 def to_decimal(num_string, base):
-    pass
+    # convert our string to a list
+    digit_string = list(num_string)
+    # reverse the list
+    digit_string.reverse()
+
+    # set starting value to 0
+    value = 0
+
+    # iterate over the list
+    for i in range(len(digit_string)):
+
+        # for debugging
+        print(f"+({int(digit_string[i])} * {base ** i})")
+
+        # increment the value by (digit at index 0/1) * (base ^ index)
+        value += int(digit_string[i]) * (base ** i)
+    # return the value
+    return value
 
 print(to_decimal(string1, 2))
+
+# 
+# hex   0    0
+# bin   0000 0000
+# F === 1111
+
+# FF       FF
+# 11111111 11111111
