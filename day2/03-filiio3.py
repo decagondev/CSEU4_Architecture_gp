@@ -12,7 +12,10 @@ try:
             # split the comment out
             comment_split = line.split('#')
 
-            num = comment_split[0]
+            num = comment_split[0].strip()
+
+            if num == '':
+                continue
 
             i_num = int(num, 2)
 

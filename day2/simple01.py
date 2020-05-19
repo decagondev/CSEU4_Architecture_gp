@@ -11,15 +11,35 @@ SAVE = 4
 PRINT_REG = 5
 ADD = 6
 
-# lets load a program in to memory
-def load_memory(filename):
-    pass
 
 # lets make a model of memory to hold our program
-# TODO: refactor to load in memory from file eg `memory = [0] * 128`
-memory = []
+memory = [0] * 128
 
 register = [0] * 8
+
+# lets load a program in to memory
+def load_memory(filename):
+    try:
+        addr = 0
+        with open(filename) as f:
+            for line in f:
+                # split the comment out
+                comment_split = line.split('#')
+
+                num = comment_split[0].strip()
+
+                if num == '':
+                    continue
+
+                i_num = int(num, 2)
+
+                memory[addr] = i_num
+
+                addr += 1
+    except FileNotFoundError:
+        print("file not found!!!")
+        sys.exit(2)
+
 
 # think about keeping track where we are currently in mem to fetch the next instruction
 pc = 0
@@ -28,10 +48,16 @@ running = True
 op_size = 0
 
 # Main entrypoint
-# TODO: grab any args
-# TODO: load the memory
-# REPL
 
+# grab any args
+if len(sys.argv) != 2:
+    print("usage: 02-fileio.2.py <filename>")
+    sys.exit(1)
+
+
+# load the memory
+load_memory(sys.argv[1])
+# REPL
 # lets make a running loop...
 while running:
     # extract a command maybe?

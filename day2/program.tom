@@ -1,3 +1,4 @@
+# This program will do some stuff
 00000010 # PRINT_TOM
 00000100 # SAVE the value 65 to register 2
 01000001 # 65
