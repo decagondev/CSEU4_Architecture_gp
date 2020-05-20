@@ -20,6 +20,10 @@ memory = [0] * 128
 register = [0] * 8
 
 # TODO: Stack Pointer (R7) as per specs
+SP = 7 # index of the registers list 
+# to use to store where the top of the stack is
+register[SP] = 0xf4
+
 
 
 # lets load a program in to memory
@@ -106,16 +110,22 @@ while running:
     # push
     elif command == PUSH:
         # setup
+        reg = memory[pc + 1]
+        val = register[reg]
 
         # push
-        pass
+        register[SP] -= 1
+        memory[register[SP]] = val
 
     # pop
     elif command == POP:
         # setup
+        reg = memory[pc + 1]
+        val = memory[register[SP]]
 
         # pop
-        pass
+        register[reg] = val
+        register[SP] += 1
 
     
     else:

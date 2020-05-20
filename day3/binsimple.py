@@ -11,3 +11,4 @@ for i in range(255, len(num)):
     data.append(num[i])
 print(data[2])
 f.close()
+
