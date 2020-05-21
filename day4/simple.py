@@ -16,8 +16,6 @@ CALL = 9
 RET  = 10
 
 
-
-
 # lets make a model of memory to hold our program
 memory = [0] * 256
 
@@ -137,17 +135,23 @@ while running:
 
     elif command == CALL:
         # Push return address on stack
+        register[SP] -= 1
+        memory[register[SP]] = pc + 2
 
         # Set PC to subroutine
+        reg = memory[pc + 1]
+        pc = register[reg]
 
         # remember to set op_size to zero
-        pass
+        op_size = 0
+
 
     elif command == RET:
         # Pop return address from stack and store in pc
-
+        pc = memory[register[SP]]
+        register[SP] += 1
         # remember to set op_size to zero
-        pass
+        op_size = 0
          
     else:
         print(f"Invalid Instruction: {command}")

@@ -11,8 +11,8 @@ print("R0") # PRINT_REG R0
 def add(a, b): 
     # ADD R0 R1
     return a + b # RET
-CALL reg
-RET
+# CALL reg
+# RET
 # store our variables on the stack
 # store our variables in registers R0 R1
 
