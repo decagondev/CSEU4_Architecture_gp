@@ -12,9 +12,10 @@ PRINT_REG = 5
 ADD = 6
 PUSH = 7
 POP = 8
+CALL = 9
+RET  = 10
 
-PRINT_TOM
-PRINT_NUM 1243
+
 
 
 # lets make a model of memory to hold our program
@@ -134,7 +135,20 @@ while running:
 
         op_size = 2
 
-    
+    elif command == CALL:
+        # Push return address on stack
+
+        # Set PC to subroutine
+
+        # remember to set op_size to zero
+        pass
+
+    elif command == RET:
+        # Pop return address from stack and store in pc
+
+        # remember to set op_size to zero
+        pass
+         
     else:
         print(f"Invalid Instruction: {command}")
         running = False
