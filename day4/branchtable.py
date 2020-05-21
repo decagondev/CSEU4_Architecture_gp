@@ -12,9 +12,16 @@ PRINT_REG = 5
 ADD = 6
 PUSH = 7
 POP = 8
+PRINT_DAVE = 90
 CALL = 9 # New for day 4
 RET = 10 # New for day 4
 
+# class OpCode:
+#     def __init__(self, code, size, op1=None, op2=None):
+#         self.code
+#         self.size
+#         self.op1
+#         self.op2
 # think of some operations that we might want to perform such as print something, load  or store something etc
 # maybe some way to stop execution and some arithmetic operations
 
@@ -24,6 +31,10 @@ def op_halt(op1, op2):
 
 def op_print_tom(op1, op2):
     print("tom")
+    return 1
+
+def op_print_dave(op1, op2):
+    print("dave")
     return 1
 
 def op_print_num(op1, op2):
@@ -63,6 +74,7 @@ def op_ret(op1, op2):
 bt = {
     HALT: op_halt,
     PRINT_TOM: op_print_tom,
+    PRINT_DAVE: op_print_dave,
     PRINT_NUM: op_print_num,
     SAVE: op_save,
     PRINT_REG: op_print_reg,
@@ -107,7 +119,6 @@ memory = [0] * 128
 register = [0] * 8
 
 sp = 7
-
 
 # think about keeping track where we are currently in mem to fetch the next instruction
 pc = 0
